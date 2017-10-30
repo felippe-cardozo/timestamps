@@ -18,14 +18,14 @@ app.get('/:time', function(req, res) {
   }
   // unix timestamp is only valid if parsed as an int
   if (!moment(time, formats).isValid() && !moment(+time, formats).isValid())
-    return(res.json(timeObject))
+    res.send(timeObject)
   const date = moment(time, formats).isValid() ? 
     moment(time, formats) : moment(+time, formats)
   let natural = date.format('MMMM DD, YYYY')
   let unix = date.unix()
   timeObject['unix'] = unix
   timeObject['natural'] = natural
-  res.json(timeObject)
+  res.send(timeObject)
 }).listen(3000, function(){
   console.log('app started at port 3000')
 })
