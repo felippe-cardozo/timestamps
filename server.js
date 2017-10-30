@@ -3,6 +3,7 @@ const moment = require('moment')
 const path = require('path')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 app.use('/', express.static(path.join(__dirname, 'templates')))
 
@@ -26,6 +27,6 @@ app.get('/:time', function(req, res) {
   timeObject['unix'] = unix
   timeObject['natural'] = natural
   res.send(timeObject)
-}).listen(3000, function(){
-  console.log('app started at port 3000')
+}).listen(port, function(){
+  console.log('app started at port ' + port)
 })
